@@ -11,3 +11,6 @@ https://github.com/cjalvarado/Course1StarterCode
 
 How to add .jar or library to path in eclipse
 https://pages.cs.wisc.edu/~cs302/labs/EclipseTutorial_Processing/Step_02.html
+
+
+https://github.com/Schitiz/Coursera-UC_SanDiego-Object-Oriented-Programming-in-Java/blob/master/module3/EarthquakeCityMap.java

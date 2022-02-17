@@ -1,0 +1,51 @@
+GUI: assignment and quiz answers
+
+Quiz Answers and Explanations
+Correct answers are in bold. Incorrect answers are shown in italics.
+
+Question 1 and 2
+These questions asked you about your project.  
+
+1. Does your map display dozens of earthquake markers, with different colors and sizes indicating the strength of each earthquake that seem to make sense?
+
+2.   Does your map display a key that shows an explanation of each type of earthquake marker, and is that key neatly organized, such as in the image below?
+
+For both questions:
+Yes (correct).  Thank you for answering this honestly!
+
+No. Thank you for your honesty!  We recommend you keep trying and use the discussion forums to get help.  But if you are truly stuck, feel free to read through the code for the next module for hints on how to get unstuck. 
+
+Question 3
+Which class do you create objects of to display the earthquake "dots" on the map?
+
+SimplePointMarker (correct).  SimplePointMarkers are used to display the "dots" on the map.
+
+PointFeature.  The features store information about the earthquakes, but do not display that information.
+
+Marker. Marker is an interface (which we'll learn more about in the next Module), and not a class that you can create with "new".  
+
+earthquakes.  earthquakes is the name of the variable that stores the earthquake features.
+
+Question 4
+Assume you have a SimplePointMarker stored in the variable marker. Which of the following lines of code will set that marker's color to red?  
+
+Incorrect:
+marker.setColor(255);
+This will set the color of the marker to white, since 0-255 are interpreted as grayscale and (255, 255, 255) is white.  
+
+Correct
+marker.setColor(color(255, 0, 0));
+This line correctly uses Processing's color method to generate the color red and then uses setColor to turn the marker red.  Recall that the order of the values is (red, green, blue) with 0 being none of that color and 255 being the maximum of that color.  So (255, 0, 0) is maximum red, no green, and no blue which is red.
+
+Incorrect
+marker.setColor(255, 0, 0);
+The setColor method takes only one argument.
+
+Question 5
+How many different SimplePointMarker objects does your program create when you run it?  
+
+One for each PointFeature in earthquakes (correct).  You need a separate marker for each earthquake.
+
+100.  This might be true for a given day or given set of earthquake data, but this won't always be the case.
+
+1.  Your code should create more than 1. The Markers are what display the earthquakes.
