@@ -2,6 +2,7 @@ package module4;
 
 import java.util.ArrayList;
 import java.util.List;
+// import java.io.File;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.Feature;
@@ -70,7 +71,7 @@ public class EarthquakeCityMap extends PApplet {
 		else {
 			map = new UnfoldingMap(this, 200, 50, 650, 600, new Google.GoogleMapProvider());
 			// IF YOU WANT TO TEST WITH A LOCAL FILE, uncomment the next line
-		    //earthquakesURL = "2.5_week.atom";
+			//earthquakesURL = "2.5_week.atom";
 		}
 		MapUtils.createDefaultEventDispatcher(this, map);
 		
@@ -85,6 +86,19 @@ public class EarthquakeCityMap extends PApplet {
 		
 		// (2) Reading in earthquake data and geometric properties
 	    //     STEP 1: load country features and markers
+		// String fullJSONPath = dataPath("countries.geo.json");
+		// println(new File(fullJSONPath).exists());//hopefully this prints true
+		// println("fullJSONPath type: " + fullJSONPath.getClass().getSimpleName());
+		// println("countryFile type: " + countryFile.getClass().getSimpleName());
+		// println("fullJSONPath: " + fullJSONPath);//hopefully this prints the full path to the json file on your machine
+		// println(this.sketchPath("data"+File.separator+countryFile));
+
+		// List<Feature> countries = GeoJSONReader.loadData(this, dataPath("countries.geo.json"));
+		// List<Feature> countries = GeoJSONReader.loadData(this, this.sketchPath("data"+File.separator+countryFile));
+		// List<Feature> countries = GeoJSONReader.loadData(this, "E:\\Courses\\Coursera\\coursera -8 OOP in Java\\OOP in Java-Code\\Code\\UCSDUnfoldingMaps\\src\\module4\\countries.geo.json");
+		// E:\Courses\Coursera\coursera -8 OOP in Java\OOP in Java-Code\Code\UCSDUnfoldingMaps\src\module4\countries.geo.json
+		// List<Feature> countries = GeoJSONReader.loadData(this, this.sketchPath("data"+"/"+countryFile));
+
 		List<Feature> countries = GeoJSONReader.loadData(this, countryFile);
 		countryMarkers = MapUtils.createSimpleMarkers(countries);
 		
@@ -112,6 +126,7 @@ public class EarthquakeCityMap extends PApplet {
 
 	    // could be used for debugging
 	    printQuakes();
+		System.out.println("quakemarker size " + quakeMarkers.size());
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -134,24 +149,39 @@ public class EarthquakeCityMap extends PApplet {
 	private void addKey() {	
 		// Remember you can use Processing's graphics methods here
 		fill(255, 250, 240);
-		rect(25, 50, 150, 250);
+		rect(25, 50, 150, 400);
 		
 		fill(0);
 		textAlign(LEFT, CENTER);
 		textSize(12);
 		text("Earthquake Key", 50, 75);
 		
-		fill(color(255, 0, 0));
-		ellipse(50, 125, 15, 15);
 		fill(color(255, 255, 0));
+		triangle(45, 135, 50, 125,55 ,135 );
+		fill(255,255,255);
 		ellipse(50, 175, 10, 10);
-		fill(color(0, 0, 255));
-		ellipse(50, 225, 5, 5);
+		fill(255,255,255);
+		rect(50, 225, 10, 10);
 		
 		fill(0, 0, 0);
-		text("5.0+ Magnitude", 75, 125);
-		text("4.0+ Magnitude", 75, 175);
-		text("Below 4.0", 75, 225);
+		text("City Marker", 75, 125);
+		text("Land Quake", 75, 175);
+		text("Ocean Quake", 75, 225);
+		text("Size - Magnitude",50,275);
+		text("Deep", 75, 300);
+		text("Intermediate", 75, 325);
+		text("Shallow", 75,350);
+		text("Past hour", 75,375);
+		
+		fill(255,0,0);
+		ellipse(50, 300, 10, 10);
+		fill(0,0,255);
+		ellipse(50, 325, 10, 10);
+		fill(0,255,0);
+		ellipse(50, 350, 10, 10);
+		fill(0,0,0);
+		ellipse(50,375,10,10);
+		line(50,360,50,390);
 	}
 
 	
@@ -170,7 +200,9 @@ public class EarthquakeCityMap extends PApplet {
 		// If isInCountry ever returns true, isLand should return true.
 		for (Marker m : countryMarkers) {
 			// TODO: Finish this method using the helper method isInCountry
-			
+			if(isInCountry(earthquake,m)){
+				return true;
+			}
 		}
 		
 		
@@ -210,6 +242,20 @@ public class EarthquakeCityMap extends PApplet {
 		//  * If you know your Marker, m, is a LandQuakeMarker, then it has a "country" 
 		//      property set.  You can get the country with:
 		//        String country = (String)m.getProperty("country");
+		for(Marker c: countryMarkers){
+			int count=0;
+			int count_ocean=0;
+			for(Marker f : quakeMarkers) {
+				if(f.getProperty("country")==c.getProperty("name")){
+					count++;
+				}
+				if(f.getProperty("country")==null){
+					count_ocean++;
+				}
+			}
+			System.out.println(c.getProperty("name")+":"+ count);
+			System.out.println("ocean_count : "+ count_ocean);
+		}
 		
 		
 	}

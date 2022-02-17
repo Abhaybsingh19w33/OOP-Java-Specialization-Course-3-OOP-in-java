@@ -1,0 +1,107 @@
+Inheritance: assignment and quiz answers
+
+Quiz Answers and Explanations
+Correct answers are in bold. Incorrect answers are shown in italics.
+
+Question 1
+Does your earthquake map display earthquakes, cities and the key, as described through the end of step 9?  
+
+Yes (correct).  Thanks for being honest and nice work. 
+
+No:  Thanks for being honest.  I'm sure you've already worked hard on getting this part of the assignment done.  If you just need a bit more help to finish, feel free to post in the discussion forums for help from course Mentors. 
+
+Question 2
+When you first ran the starter code for the programming assignment, why didn't it display any earthquake markers on the map?  
+
+The EarthquarkeMarker objects had not yet been created.  We created the OceanQuakeMarker and LandQuakeMarker objects in (2) STEP 3 in the setUp function.
+
+The Marker objects had not yet been added to the map.  We added the marker objects to the map in (3) in the setUp function.
+
+There was no draw() method implemented in the EarthquakeMarker class.  The draw() method was in fact implemented. However, notice that it calls other methods...
+
+The drawEarthquake method was not fully implemented in the OceanQuakeMarker and LandQuakeMarker classes (correct).   draw() was fully implemented in the EarthquakeMarker class, but it called the method drawEarthquake, which had to be implemented in the subclasses LandQuakeMarker and OceanQuakeMarker.
+
+Question 3
+Which of the following is/are true about the classes used in this programming assignment (SELECT ALL THAT APPLY)?  
+
+EarthquakeMarker objects cannot be instantiated using "new" (correct).  EarthquakeMarker is an abstract class, which means it cannot be instantiated.
+
+CityMarker is the parent class of EarthquakeMarker.  This is an incorrect response. SimplePointMarker is the parent class of both CityMarker and EarthquakeMarker.
+
+The method call:
+drawEarthquake(pg, x, y);
+in the draw() method in EarthquakeMarker is a call to the helper method drawEarthquake defined and fully implemented in the EarthquakeMarker class. This is an incorrect response. This method call will call the drawEarthquake method defined in either OceanQuakeMarker or LandQuakeMarker, depending on what actual object draw() is called on.  
+
+The method colorDetermine, which is defined in the EarthquakeMarker class, is what determines the color of both OceanQuakeMarkers and LandQuakeMarkers (correct).  This method is called from EarthquakeMarker's draw() method, and sets the fill color for when drawEarthquake is called.
+
+
+The call:
+super(location);
+in the CityMarker's constructor calls the constructor of SimplePointMarker (correct).
+This is a correct as SimplePointMarker is the superclass of CityMarker.  
+
+Question 4
+Given the UML class hierarchy you created in step 6 of your programming assignment, which of the following assignment statements WILL NOT cause an error (SELECT ALL THAT APPLY). Assume all of the proper import statements are included at the top of the file.
+
+Incorrect:
+SimplePointMarker m = new Marker();
+There are two problems with this code. First, Marker is an interface, and cannot be instantiated. Second, not all Markers are SimplePointMarkers.
+
+Correct:
+// Assume the variable feature stores a PointFeature object
+EarthquakeMarker em = new OceanQuakeMarker(feature);
+This is correct because all OceanQuakeMarkers are EarthquakeMarkers.
+
+Correct:
+// Assume the variable feature stores a PointFeature object
+Marker m = new OceanQuakeMarker(feature);
+This is fine because all OceanQuakeMarkers are Markers (EarthquakeMarker is the parent of OceanQuakeMarker, SimplePointMarker is the parent of EarthquakeMarker, AbstractMarker is the parent of EarthquakeMarker, and Marker is an interface implemented by AbstractMarker).  
+
+Correct:
+// Assume the variable loc stores a Location object
+Object o = new SimplePointMarker(loc);
+This is fine because all objects are of type Object.
+
+Incorrect: 
+// Assume the variable loc stores a Location object
+EarthQuakeMarker em = new SimplePointMarker(loc);
+This will cause an error because not all SimplePointMarkers are EarthquakeMarkers.  
+
+Incorrect:
+// Assume the variable feature stores a PointFeature object
+SimplePointMarker pm = new OceanQuakeMarker(feature);
+EarthquakeMarker em = pm;
+The first line is fine. But the second line will not work without a cast. Even though the object pointed to by pm is actually an OceanQuakeMarker, which is always an EarthquakeMarker, java "forgets" about that.  (Really, it only remembers the static type - SimplePointMarker - and doesn't remember that it points to an OceanQuakeMarker.)  To fix the problem, you can change the second line to:  
+EarthquakeMarker em = (EarthquakeMarker)pm;
+
+
+Question 5 (Variant 1)
+Run your program using the file "quiz1.atom" as the input earthquakesURL. There is a line of code that you can uncomment in setUp that will do this, labeled "uncomment this line to take the quiz".
+
+How many earthquakes were reported in China?
+
+None.   This is the number reported in test1.atom, be sure to use the file "quiz1.atom".  Also feel free to read through the file "quiz1.atom" by hand if you want to see what result is expected.
+
+3. This is the number reported in test2.atom, be sure to use the file "quiz1.atom".  Also feel free to read through the file "quiz1.atom" by hand if you want to see what result is expected.
+
+4 (correct).  This is the correct number of earthquakes in China per the "quiz1.atom" file. If you answered this incorrectly, feel free to use the correct answer to help debug your code.
+
+10.  It is likely you are miscounting earthquakes in your code.  Feel free to read through the file "quiz1.atom" by hand if you want to see what result is expected.
+
+Question 5 (Variant 2)
+Run your program using the file "quiz1.atom" as the input earthquakesURL. There is a line of code that you can uncomment in setUp that will do this, labeled "uncomment this line to take the quiz".
+
+How many earthquakes were reported in the United States of America?
+
+2, 18, and 189 are all incorrect.     Feel free to read through the file "quiz1.atom" by hand if you want to see what result is expected.
+
+74 (correct).  This is the correct number of earthquakes in the United States of America per the "quiz1.atom" file. If you answered this incorrectly, feel free to use the correct answer to help debug your code.
+
+Question 6 
+Run your program using the file "quiz1.atom" as the input earthquakesURL. There is a line of code that you can uncomment in setup that will do this, labeled "uncomment this line to take the quiz".
+
+How many earthquakes were reported to have occurred in the ocean?
+
+30, 74, 192, and 309 are all incorrect.  Feel free to read through the file "quiz1.atom" by hand if you want to see what result is expected.
+
+200.   This is the correct number of earthquakes in the ocean.  If you answered this incorrectly, feel free to use the correct answer to help debug your code.
