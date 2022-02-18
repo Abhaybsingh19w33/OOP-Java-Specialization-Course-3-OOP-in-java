@@ -14,12 +14,12 @@ import processing.core.PGraphics;
 public class CityMarker extends CommonMarker {
 	
 	public static int TRI_SIZE = 5;  // The size of the triangle marker
-	
+
 	public CityMarker(Location location) {
 		super(location);
 	}
-	
-	
+
+
 	public CityMarker(Feature city) {
 		super(((PointFeature)city).getLocation(), city.getProperties());
 		// Cities have properties: "name" (city name), "country" (country name)
@@ -39,15 +39,15 @@ public class CityMarker extends CommonMarker {
 	 */
 	public void drawMarker(PGraphics pg, float x, float y) {
 		//System.out.println("Drawing a city");
-		// Save previous drawing style
-		pg.pushStyle();
-		
-		// IMPLEMENT: drawing triangle for each city
-		pg.fill(150, 30, 30);
-		pg.triangle(x, y-TRI_SIZE, x-TRI_SIZE, y+TRI_SIZE, x+TRI_SIZE, y+TRI_SIZE);
-		
-		// Restore previous drawing style
-		pg.popStyle();
+        // Save previous drawing style
+        pg.pushStyle();
+
+        // IMPLEMENT: drawing triangle for each city
+        pg.fill(150, 30, 30);
+        pg.triangle(x, y-TRI_SIZE, x-TRI_SIZE, y+TRI_SIZE, x+TRI_SIZE, y+TRI_SIZE);
+
+        // Restore previous drawing style
+        pg.popStyle();
 	}
 	
 	/** Show the title of the city if this marker is selected */
@@ -57,7 +57,7 @@ public class CityMarker extends CommonMarker {
 		String pop = "Pop: " + getPopulation() + " Million";
 		
 		pg.pushStyle();
-		
+
 		pg.fill(255, 255, 255);
 		pg.textSize(12);
 		pg.rectMode(PConstants.CORNER);
