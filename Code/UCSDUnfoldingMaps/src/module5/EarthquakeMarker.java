@@ -94,6 +94,18 @@ public abstract class EarthquakeMarker extends CommonMarker
 	public void showTitle(PGraphics pg, float x, float y)
 	{
 		// TODO: Implement this method
+        String title = String.format("%s - Magnitude: %s, Depth: %s ",
+                getTitle(), getMagnitude(), getDepth());
+        int fontSize = 12;
+
+        // Popup box
+        pg.fill(255);
+        pg.rect(x, y + CityMarker.TRI_SIZE * 2 - fontSize, pg.textWidth(title) + 2, fontSize + 2);
+
+        // Display title
+        pg.fill(0);
+        pg.textSize(fontSize);
+        pg.text(title, x, y + CityMarker.TRI_SIZE * 2);
 		
 	}
 
